@@ -45,6 +45,15 @@
     });
   }
 
+  // Offline app-shell caching (PWA).
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function () {
+        /* offline support unavailable (e.g. file:// or unsupported browser) */
+      });
+    });
+  }
+
   // Highlight the current page in the nav.
   var path = location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".nav-links a").forEach(function (link) {

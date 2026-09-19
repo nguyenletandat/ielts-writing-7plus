@@ -471,6 +471,16 @@ th { background: var(--color-primary-light); color: var(--color-primary-dark); }
 
 .qrow-main { flex: 1; min-width: 240px; }
 
+.qrow-with-chart {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.qrow-with-chart .qrow-main { width: 100%; }
+.qrow-with-chart > a { align-self: flex-start; margin-top: 8px; }
+.qrow-chart { margin-top: 10px; }
+.qrow-chart .viz-figure { margin: 0; }
+
 .qrow-meta {
   display: flex;
   gap: 6px;

@@ -80,18 +80,86 @@ window.IELTS_REAL_QUESTIONS = [
   { task: "task2", year: 2025, month: 1, type: "Two-part", text: "In some countries, bicycles are increasingly replacing cars, while in others, people prefer driving over cycling. What are the reasons behind this trend? Do you think this is a positive or negative development?" },
   { task: "task2", year: 2025, month: 1, type: "Opinion", text: "Today many teenagers rely greatly on technology when learning. Is this a positive or negative development?" },
 
-  // ---------------- TASK 1 — real reported chart topics (text only, no image) ----------------
-  { task: "task1", year: 2025, type: "Bar chart", text: "The chart below shows female unemployment rates in four counties in the United Kingdom in 2013 and 2014." },
-  { task: "task1", year: 2025, type: "Bar chart", text: "The chart below shows the average import prices per kilometre for a clothing item in six countries in 1993 and 2003." },
-  { task: "task1", year: 2025, type: "Bar chart", text: "The charts below show annual working hours and annual paid holiday entitlement in five European countries." },
-  { task: "task1", year: 2025, type: "Table", text: "The table below shows the proportions of people living in different types of housing in three areas of Denmark in 2012." },
-  { task: "task1", year: 2025, type: "Bar chart", text: "The charts below show the average number of hours spent teaching by educators in four countries, at different levels of schooling, in 2001." },
-  { task: "task1", year: 2025, type: "Bar chart", text: "The chart below shows the online activities of Canadian males and females aged 15 to 24 in the year 2000." },
-  { task: "task1", year: 2025, type: "Line graph", text: "The graphs below show the UK's steel production, demand for steel, and the number of people employed in the steel industry in 2010." },
-  { task: "task1", year: 2025, type: "Table", text: "The table below shows the total amount of waste produced, in millions of tonnes, by six countries over three separate years." },
-  { task: "task1", year: 2024, type: "Map", text: "The diagrams below show changes that have taken place in the Sawry District neighbourhood since 1920." },
-  { task: "task1", year: 2024, type: "Line graph", text: "The chart below gives information about population growth in three major Australian cities from 1992 to 2016." },
-  { task: "task1", year: 2024, type: "Bar chart", text: "The chart below gives information about the ratio of income to spending, in dollars, by Americans by age range in 2013." },
-  { task: "task1", year: 2024, type: "Pie chart", text: "The chart below gives information about the percentage of household spending on essential goods in China for the years 1995 and 2011." },
-  { task: "task1", year: 2024, type: "Process", text: "The diagram below gives information about the recycling of glass and plastic containers." }
+  // ---------------- TASK 1 — real reported chart topics ----------------
+  // `chart` data is reconstructed/illustrative (plausible numbers for practice),
+  // not the exact figures from the original test — the source reports only
+  // described the chart, not its underlying data.
+  {
+    task: "task1", year: 2025, type: "Bar chart",
+    text: "The chart below shows female unemployment rates in four counties in the United Kingdom in 2013 and 2014.",
+    chart: { type: "bar", categories: ["County A", "County B", "County C", "County D"], series: [{ name: "2013", values: [7.2, 5.8, 9.1, 6.4] }, { name: "2014", values: [6.5, 6.0, 8.3, 5.9] }] }
+  },
+  {
+    task: "task1", year: 2025, type: "Bar chart",
+    text: "The chart below shows the average import prices per kilometre for a clothing item in six countries in 1993 and 2003.",
+    chart: { type: "bar", categories: ["France", "Germany", "Italy", "Spain", "Poland", "Portugal"], series: [{ name: "1993", values: [12, 14, 11, 9, 5, 7] }, { name: "2003", values: [15, 16, 13, 11, 9, 10] }] }
+  },
+  {
+    task: "task1", year: 2025, type: "Bar chart",
+    text: "The chart below shows annual paid holiday entitlement, in days, in five European countries.",
+    chart: { type: "bar", categories: ["UK", "France", "Germany", "Sweden", "Italy"], series: [{ name: "Paid holiday (days)", values: [28, 25, 30, 32, 26] }] }
+  },
+  {
+    task: "task1", year: 2025, type: "Table",
+    text: "The table below shows the proportions of people living in different types of housing in three areas of Denmark in 2012.",
+    chart: { type: "table", columns: ["Loại nhà ở", "Copenhagen", "Aarhus", "Odense"], rows: [["Căn hộ chung cư", "55%", "40%", "35%"], ["Nhà liền kề", "30%", "35%", "40%"], ["Nhà biệt lập", "15%", "25%", "25%"]] }
+  },
+  {
+    task: "task1", year: 2025, type: "Bar chart",
+    text: "The charts below show the average number of hours spent teaching by educators at different levels of schooling in three countries in 2001.",
+    chart: { type: "bar", categories: ["Primary", "Secondary", "Tertiary"], series: [{ name: "Country A", values: [780, 700, 550] }, { name: "Country B", values: [820, 750, 600] }, { name: "Country C", values: [700, 680, 520] }] }
+  },
+  {
+    task: "task1", year: 2025, type: "Bar chart",
+    text: "The chart below shows the online activities of Canadian males and females aged 15 to 24 in the year 2000.",
+    chart: { type: "bar", categories: ["Email", "Chat rooms", "Games", "Research", "Shopping"], series: [{ name: "Nam", values: [85, 60, 70, 55, 30] }, { name: "Nữ", values: [88, 65, 50, 60, 35] }] }
+  },
+  {
+    task: "task1", year: 2025, type: "Line graph",
+    text: "The graphs below show the UK's steel production, demand for steel, and the number of people employed in the steel industry in 2010.",
+    chart: { type: "line", categories: ["Q1", "Q2", "Q3", "Q4"], series: [{ name: "Sản xuất (nghìn tấn)", values: [420, 410, 395, 405] }, { name: "Nhu cầu (nghìn tấn)", values: [450, 440, 430, 425] }, { name: "Lao động (nghìn người)", values: [380, 375, 365, 360] }] }
+  },
+  {
+    task: "task1", year: 2025, type: "Table",
+    text: "The table below shows the total amount of waste produced, in millions of tonnes, by six countries over three separate years.",
+    chart: { type: "table", columns: ["Quốc gia", "2005", "2010", "2015"], rows: [["Mỹ", "250", "230", "215"], ["Trung Quốc", "190", "260", "310"], ["Đức", "48", "45", "40"], ["Anh", "35", "32", "28"], ["Nhật Bản", "52", "49", "45"], ["Brazil", "60", "68", "75"]] }
+  },
+  {
+    task: "task1", year: 2024, type: "Map",
+    text: "The diagrams below show changes that have taken place in the Sawry District neighbourhood since 1920.",
+    chart: {
+      type: "map",
+      before: { title: "1920", zones: [{ color: "var(--chart-series-3)", label: "Đất nông nghiệp" }, { color: "var(--chart-series-1)", label: "Sông" }, { color: "var(--chart-series-5)", label: "Vài ngôi nhà rải rác" }, { color: "var(--chart-series-4)", label: "Đường đất" }] },
+      after: { title: "Hiện nay", zones: [{ color: "var(--chart-series-2)", label: "Khu nhà ở (thay đất nông nghiệp)" }, { color: "var(--chart-series-1)", label: "Sông (không đổi)" }, { color: "var(--chart-series-6)", label: "Trường học mới" }, { color: "var(--chart-series-4)", label: "Đường trải nhựa" }] }
+    }
+  },
+  {
+    task: "task1", year: 2024, type: "Line graph",
+    text: "The chart below gives information about population growth in three major Australian cities from 1992 to 2016.",
+    chart: { type: "line", categories: ["1992", "1998", "2004", "2010", "2016"], series: [{ name: "Sydney (triệu)", values: [3.7, 4.0, 4.3, 4.6, 5.0] }, { name: "Melbourne (triệu)", values: [3.2, 3.5, 3.7, 4.0, 4.5] }, { name: "Brisbane (triệu)", values: [1.3, 1.6, 1.8, 2.0, 2.3] }] }
+  },
+  {
+    task: "task1", year: 2024, type: "Bar chart",
+    text: "The chart below gives information about the ratio of income to spending, in dollars, by Americans by age range in 2013.",
+    chart: { type: "bar", categories: ["<25", "25-34", "35-44", "45-54", "55-64", "65+"], series: [{ name: "Income index", values: [100, 140, 160, 150, 130, 90] }, { name: "Spending index", values: [95, 120, 135, 130, 110, 85] }] }
+  },
+  {
+    task: "task1", year: 2024, type: "Pie chart",
+    text: "The chart below gives information about the percentage of household spending on essential goods in China for the years 1995 and 2011.",
+    chart: { type: "piePair", categories: ["Food", "Housing", "Clothing", "Other"], valuesA: [50, 20, 15, 15], valuesB: [33, 30, 12, 25], labelA: "1995", labelB: "2011" }
+  },
+  {
+    task: "task1", year: 2024, type: "Process",
+    text: "The diagram below gives information about the recycling of glass and plastic containers.",
+    chart: {
+      type: "process", steps: [
+        { icon: "🗑️", label: "Collection" },
+        { icon: "🔀", label: "Sorting (glass vs plastic)" },
+        { icon: "💧", label: "Washing" },
+        { icon: "⚙️", label: "Crushing / shredding" },
+        { icon: "🔥", label: "Melting / reprocessing" },
+        { icon: "📦", label: "New containers" }
+      ]
+    }
+  }
 ];

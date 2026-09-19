@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ngân hàng đề &amp; bài mẫu | IELTS Writing 7.0+</title>
 <meta name="description" content="Đề thi IELTS Writing Task 1 và Task 2 kèm bài mẫu band 7.0 - 7.5 có ghi chú phân tích.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<meta name="theme-color" content="#3d5af1">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -212,6 +216,7 @@
 
 <script src="js/main.js"></script>
 <script src="js/chart-data.js"></script>
+<script src="js/chart-render.js"></script>
 <script src="js/question-bank-data.js"></script>
 <script>
   document.querySelectorAll(".chart-mount").forEach(function (mount) {
@@ -267,15 +272,22 @@
     items.forEach(function (q) {
       var dateLabel = q.month ? (q.month < 10 ? "0" + q.month : q.month) + "/" + q.year : String(q.year);
       var practiceUrl = "practice.html?task=" + encodeURIComponent(q.task) + "&q=" + encodeURIComponent(q.text);
+      if (q.chart) practiceUrl += "&chart=" + encodeURIComponent(JSON.stringify(q.chart));
+
       var row = document.createElement("div");
-      row.className = "qrow";
+      row.className = "qrow" + (q.chart ? " qrow-with-chart" : "");
       row.innerHTML =
         '<div class="qrow-main">' +
           '<div class="qrow-meta"><span class="badge">' + TASK_LABEL[q.task] + '</span><span class="badge accent">' + q.type + '</span><span class="badge band">' + dateLabel + "</span></div>" +
           '<p class="qrow-text"></p>' +
+          '<div class="qrow-chart"></div>' +
         "</div>" +
         '<a class="btn btn-ghost btn-sm" href="' + practiceUrl + '">Luyện đề này →</a>';
       row.querySelector(".qrow-text").textContent = q.text;
+      if (q.chart && window.ChartRender) {
+        row.querySelector(".qrow-chart").innerHTML = window.ChartRender.renderSpec(q.chart) +
+          '<p style="font-size:0.72rem; color:var(--color-text-muted); margin-top:-4px;">*Số liệu minh họa để luyện tập, không phải số liệu gốc của đề thi.</p>';
+      }
       realQlist.appendChild(row);
     });
 

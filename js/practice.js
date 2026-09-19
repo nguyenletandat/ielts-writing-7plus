@@ -435,5 +435,20 @@
       questionInput.value = question;
       updateChartReference();
     }
+
+    // A "Luyện đề này" link from the real question bank can carry its chart
+    // along as JSON, e.g. practice.html?task=task1&q=...&chart={"type":"bar",...}
+    var chartParam = params.get("chart");
+    if (chartParam && window.ChartRender) {
+      try {
+        var html = window.ChartRender.renderSpec(JSON.parse(chartParam));
+        if (html) {
+          chartReference.innerHTML = html;
+          chartReference.style.display = "";
+        }
+      } catch (e) {
+        /* malformed chart param — ignore, question text still works */
+      }
+    }
   })();
 })();

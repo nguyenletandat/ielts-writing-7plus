@@ -1,0 +1,15 @@
+{
+  "name": "IELTS Writing 7.0+",
+  "short_name": "IELTS 7.0+",
+  "description": "Tự học IELTS Writing hướng tới band 7.0 - 7.5: lý thuyết, ngân hàng đề, luyện viết có bấm giờ và chấm điểm AI.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f7fb",
+  "theme_color": "#3d5af1",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
