@@ -1,6 +1,6 @@
 // Minimal offline app-shell cache for the static IELTS Writing 7.0+ site.
 // Cross-origin requests (Gemini API calls, fonts, etc.) are never intercepted.
-var CACHE_NAME = "ielts-cache-v1";
+var CACHE_NAME = "ielts-cache-v2";
 var CORE_ASSETS = [
   "./",
   "./index.html",
@@ -9,6 +9,7 @@ var CORE_ASSETS = [
   "./practice.html",
   "./flashcards.html",
   "./paraphrase.html",
+  "./paraphrase-guide.html",
   "./grammar.html",
   "./css/style.css",
   "./js/main.js",
