@@ -79,13 +79,52 @@
       </div>
 
       <div>
+        <div class="sidebar-card" id="ai-grade-card">
+          <h3>🤖 Chấm điểm bằng AI (Google AI Studio)</h3>
+
+          <div id="ai-key-setup">
+            <p class="ai-hint">Nhập API key miễn phí từ Google AI Studio để nhận nhận xét bài viết theo 4 tiêu chí IELTS. Khóa chỉ lưu trên trình duyệt của bạn và được gọi thẳng tới Google — trang này không lưu hay nhìn thấy khóa của bạn.</p>
+            <input type="password" id="ai-key-input" placeholder="Dán API key (AIza...)">
+            <div style="display:flex; gap:8px; margin-top:8px; flex-wrap:wrap;">
+              <button class="btn btn-primary btn-sm" id="ai-key-save">Lưu khóa</button>
+              <a class="btn btn-ghost btn-sm" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Lấy khóa miễn phí →</a>
+            </div>
+          </div>
+
+          <div id="ai-key-ready" style="display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; gap:8px; flex-wrap:wrap;">
+              <span style="font-size:0.78rem; color:var(--color-text-muted);">Khóa: <code id="ai-key-masked"></code></span>
+              <button class="btn btn-ghost btn-sm" id="ai-key-change">Đổi khóa</button>
+            </div>
+            <select id="ai-model-select" style="margin-bottom:10px;">
+              <option value="gemini-2.5-flash">Gemini 2.5 Flash (nhanh, miễn phí)</option>
+              <option value="gemini-2.5-pro">Gemini 2.5 Pro (chính xác hơn, chậm hơn)</option>
+            </select>
+            <button class="btn btn-primary" id="ai-grade-btn" style="width:100%;">Chấm bài viết này</button>
+          </div>
+
+          <div id="ai-result" style="display:none;"></div>
+        </div>
+
         <div class="sidebar-card">
           <h3>Tự chấm nhanh (band 7 checklist)</h3>
           <ul class="checklist" id="self-check-list"></ul>
         </div>
 
         <div class="sidebar-card">
-          <h3>Lịch sử luyện tập</h3>
+          <h3>Thống kê luyện tập</h3>
+          <div id="stats-box"></div>
+        </div>
+
+        <div class="sidebar-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <h3 style="margin:0;">Lịch sử luyện tập</h3>
+            <div style="display:flex; gap:6px;">
+              <button class="btn btn-ghost btn-sm" id="export-history-btn" title="Xuất tiến trình ra file .json">⬇️ Xuất</button>
+              <button class="btn btn-ghost btn-sm" id="import-history-btn" title="Nhập tiến trình từ file .json">⬆️ Nhập</button>
+              <input type="file" id="import-history-file" accept="application/json" style="display:none;">
+            </div>
+          </div>
           <div id="history-list">
             <p class="empty-state">Chưa có bài viết nào được lưu.</p>
           </div>
@@ -104,5 +143,6 @@
 <script src="js/main.js"></script>
 <script src="js/chart-data.js"></script>
 <script src="js/practice.js"></script>
+<script src="js/ai-grading.js"></script>
 </body>
 </html>
