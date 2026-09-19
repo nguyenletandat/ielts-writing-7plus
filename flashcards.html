@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcard từ vựng | IELTS Writing 7.0+</title>
+<meta name="description" content="Ôn từ vựng IELTS Writing bằng flashcard với lặp lại ngắt quãng (spaced repetition), lưu tiến độ ngay trên trình duyệt.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <span class="logo-badge">7+</span>
+      IELTS Writing 7.0+
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="lessons.html">Bài học</a></li>
+      <li><a href="question-bank.html">Ngân hàng đề</a></li>
+      <li><a href="practice.html">Luyện viết</a></li>
+      <li><a href="flashcards.html">Từ vựng</a></li>
+    </ul>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <button class="theme-toggle" title="Đổi giao diện sáng/tối">🌙</button>
+      <button class="nav-toggle" aria-label="Mở menu">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="container hero" style="padding-bottom:0;">
+    <h1>Flashcard từ vựng</h1>
+    <p class="lead">Ôn từ vựng theo phương pháp lặp lại ngắt quãng (spaced repetition): thẻ bạn nhớ tốt sẽ giãn cách xa hơn, thẻ hay quên sẽ quay lại sớm hơn. Tiến độ lưu ngay trên trình duyệt này.</p>
+  </div>
+
+  <div id="deck-view" class="container">
+    <div class="deck-grid" id="deck-grid"></div>
+  </div>
+
+  <div id="study-view" class="container" style="display:none;">
+    <button class="btn btn-ghost btn-sm" id="back-to-decks">← Quay lại danh sách bộ thẻ</button>
+
+    <div class="flash-stage">
+      <p class="flash-progress" id="flash-progress"></p>
+      <div class="flash-card" id="flash-card">
+        <div class="flash-term" id="flash-term"></div>
+        <div class="flash-meaning" id="flash-meaning"></div>
+        <div class="flash-example" id="flash-example"></div>
+        <div class="flash-hint" id="flash-hint">Bấm vào thẻ để xem nghĩa</div>
+      </div>
+      <div class="flash-rate-row" id="flash-rate-row" style="display:none;">
+        <button class="btn btn-danger btn-sm" data-rate="again">Quên</button>
+        <button class="btn btn-ghost btn-sm" data-rate="good">Nhớ</button>
+        <button class="btn btn-primary btn-sm" data-rate="easy">Dễ</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    Made for self-study &middot; IELTS Writing 7.0+
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/vocab-data.js"></script>
+<script src="js/flashcards.js"></script>
+</body>
+</html>
