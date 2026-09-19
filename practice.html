@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luyện viết | IELTS Writing 7.0+</title>
+<meta name="description" content="Luyện viết IELTS Writing Task 1 và Task 2 có bấm giờ, đếm từ tự động, lưu bài và theo dõi lịch sử luyện tập ngay trên trình duyệt.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <span class="logo-badge">7+</span>
+      IELTS Writing 7.0+
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="lessons.html">Bài học</a></li>
+      <li><a href="question-bank.html">Ngân hàng đề</a></li>
+      <li><a href="practice.html">Luyện viết</a></li>
+    </ul>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <button class="theme-toggle" title="Đổi giao diện sáng/tối">🌙</button>
+      <button class="nav-toggle" aria-label="Mở menu">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="container hero" style="padding-bottom:0;">
+    <h1>Luyện viết</h1>
+    <p class="lead">Chọn dạng bài, viết trực tiếp bên dưới. Bài viết được lưu tự động vào trình duyệt của bạn — không cần tài khoản, không mất dữ liệu khi tắt tab.</p>
+  </div>
+
+  <div class="container">
+    <div class="practice-toolbar">
+      <div>
+        <label for="task-select" style="display:block; font-size:0.78rem; color:var(--color-text-muted); margin-bottom:4px;">Dạng bài</label>
+        <select id="task-select">
+          <option value="task1">Task 1 (20 phút · tối thiểu 150 từ)</option>
+          <option value="task2">Task 2 (40 phút · tối thiểu 250 từ)</option>
+        </select>
+      </div>
+      <div style="flex:1; min-width:200px;">
+        <label for="question-select" style="display:block; font-size:0.78rem; color:var(--color-text-muted); margin-bottom:4px;">Chọn đề có sẵn (tùy chọn)</label>
+        <select id="question-select" style="width:100%;">
+          <option value="">— Tự nhập đề riêng bên dưới —</option>
+        </select>
+      </div>
+      <div>
+        <label style="display:block; font-size:0.78rem; color:var(--color-text-muted); margin-bottom:4px;">Đồng hồ</label>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="timer-display" id="timer-display">20:00</span>
+          <button class="btn btn-ghost btn-sm" id="timer-toggle">Bắt đầu</button>
+          <button class="btn btn-ghost btn-sm" id="timer-reset">↺</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="practice-layout">
+      <div>
+        <textarea id="question-input" placeholder="Dán hoặc nhập đề bài vào đây..." style="width:100%; min-height:70px; margin-bottom:14px;"></textarea>
+
+        <textarea id="essay-input" placeholder="Viết bài của bạn vào đây..."></textarea>
+        <div class="word-count-bar">
+          <span id="word-count" class="count low">0 từ</span>
+          <span id="min-words-hint">Tối thiểu 150 từ</span>
+        </div>
+
+        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-primary" id="save-btn">💾 Lưu bài viết</button>
+          <button class="btn btn-ghost" id="clear-btn">Xóa nội dung</button>
+          <button class="btn btn-ghost" id="export-btn">⬇️ Tải về .txt</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-card">
+          <h3>Tự chấm nhanh (band 7 checklist)</h3>
+          <ul class="checklist" id="self-check-list"></ul>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Lịch sử luyện tập</h3>
+          <div id="history-list">
+            <p class="empty-state">Chưa có bài viết nào được lưu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    Made for self-study &middot; IELTS Writing 7.0+ &middot; dữ liệu chỉ lưu trên trình duyệt này (localStorage).
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/practice.js"></script>
+</body>
+</html>
