@@ -47,7 +47,7 @@
       <div class="qcard" data-type="task1">
         <div class="qmeta"><span class="badge">Task 1</span><span class="badge accent">Line graph</span><span class="badge band">Band 7.5</span></div>
         <p class="qprompt">The graph below shows the number of visitors to three museums in a European city between 2000 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
-        <p style="color:var(--color-text-muted); font-size:0.88rem;">(Dữ liệu giả định: Museum A tăng liên tục từ 200,000 lên 850,000 lượt khách; Museum B dao động quanh mức 400,000; Museum C giảm dần từ 600,000 xuống 150,000.)</p>
+        <div class="chart-mount" data-chart-index="0"></div>
         <button class="btn btn-ghost btn-sm essay-toggle">Xem bài mẫu</button>
         <div class="essay-body">
           <p>The line graph illustrates how many people visited three museums in a European city over a twenty-year period, from 2000 to 2020.</p>
@@ -63,7 +63,7 @@
       <div class="qcard" data-type="task1">
         <div class="qmeta"><span class="badge">Task 1</span><span class="badge accent">Pie chart</span><span class="badge band">Band 7.0</span></div>
         <p class="qprompt">The charts below show the proportion of household spending in a European country in 1980 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
-        <p style="color:var(--color-text-muted); font-size:0.88rem;">(Dữ liệu giả định: Housing tăng từ 22% lên 35%; Food giảm từ 30% xuống 15%; Leisure tăng từ 10% lên 20%; các mục còn lại thay đổi nhẹ.)</p>
+        <div class="chart-mount" data-chart-index="1"></div>
         <button class="btn btn-ghost btn-sm essay-toggle">Xem bài mẫu</button>
         <div class="essay-body">
           <p>The two pie charts compare how households in a European country allocated their spending across several categories in 1980 and 2020.</p>
@@ -79,7 +79,7 @@
       <div class="qcard" data-type="task1">
         <div class="qmeta"><span class="badge">Task 1</span><span class="badge accent">Process diagram</span><span class="badge band">Band 7.5</span></div>
         <p class="qprompt">The diagram below shows the process of recycling plastic bottles. Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
-        <p style="color:var(--color-text-muted); font-size:0.88rem;">(Quy trình giả định gồm 6 bước: thu gom → phân loại → làm sạch → nghiền nhỏ → nung chảy → tạo hạt nhựa tái chế.)</p>
+        <div class="chart-mount" data-chart-index="2"></div>
         <button class="btn btn-ghost btn-sm essay-toggle">Xem bài mẫu</button>
         <div class="essay-body">
           <p>The diagram illustrates the sequence of stages involved in recycling used plastic bottles, from initial collection to the production of reusable plastic pellets.</p>
@@ -181,7 +181,13 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/chart-data.js"></script>
 <script>
+  document.querySelectorAll(".chart-mount").forEach(function (mount) {
+    var chart = window.IELTS_TASK1_CHARTS[Number(mount.getAttribute("data-chart-index"))];
+    if (chart) mount.innerHTML = chart.html;
+  });
+
   document.querySelectorAll(".essay-toggle").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var body = btn.nextElementSibling;

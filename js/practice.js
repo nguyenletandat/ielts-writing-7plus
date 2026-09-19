@@ -47,6 +47,24 @@
   var exportBtn = document.getElementById("export-btn");
   var selfCheckList = document.getElementById("self-check-list");
   var historyList = document.getElementById("history-list");
+  var chartReference = document.getElementById("chart-reference");
+
+  // ---------- Reference chart (Task 1 sample questions ship with an image) ----------
+  function updateChartReference() {
+    if (!window.IELTS_TASK1_CHARTS) return;
+    var task = taskSelect.value;
+    var idx = task === "task1" ? SAMPLE_QUESTIONS.task1.indexOf(questionInput.value.trim()) : -1;
+    var chart = idx >= 0 ? window.IELTS_TASK1_CHARTS[idx] : null;
+    if (chart) {
+      chartReference.innerHTML = chart.html;
+      chartReference.style.display = "";
+    } else {
+      chartReference.innerHTML = "";
+      chartReference.style.display = "none";
+    }
+  }
+
+  questionInput.addEventListener("input", updateChartReference);
 
   // ---------- Self-check checklist ----------
   SELF_CHECK_ITEMS.forEach(function (text, i) {
@@ -71,6 +89,7 @@
     if (questionSelect.value) {
       questionInput.value = questionSelect.value;
     }
+    updateChartReference();
   });
 
   // ---------- Word count ----------
@@ -97,6 +116,7 @@
     populateQuestions(task);
     resetTimer();
     updateWordCount();
+    updateChartReference();
   }
 
   taskSelect.addEventListener("change", applyTaskConfig);
@@ -241,6 +261,7 @@
       questionInput.value = item.question || "";
       essayInput.value = item.content || "";
       updateWordCount();
+      updateChartReference();
       showToast("Đã mở lại bài viết đã lưu.");
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else if (btn.getAttribute("data-action") === "delete") {
@@ -276,4 +297,5 @@
   renderTimer();
   updateWordCount();
   renderHistory();
+  updateChartReference();
 })();
