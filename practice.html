@@ -66,6 +66,43 @@
 
         <div id="chart-reference" style="display:none;"></div>
 
+        <div id="chart-builder-toggle-wrap" style="display:none; margin-bottom:14px;">
+          <button class="btn btn-ghost btn-sm" id="chart-builder-toggle">🎨 Tự tạo biểu đồ với dữ liệu của riêng bạn</button>
+        </div>
+
+        <div id="chart-builder-panel" class="builder-panel" style="display:none;">
+          <div class="builder-row">
+            <label for="cb-type">Loại biểu đồ</label>
+            <select id="cb-type">
+              <option value="line">Line graph (đường)</option>
+              <option value="bar">Bar chart (cột)</option>
+              <option value="pie">Pie chart (tròn)</option>
+            </select>
+          </div>
+          <div class="builder-row">
+            <label for="cb-title">Chủ đề</label>
+            <input type="text" id="cb-title" placeholder="VD: coffee exports of three countries, 2015-2020">
+          </div>
+          <div class="builder-row">
+            <label for="cb-categories" id="cb-categories-label">Nhãn trục X</label>
+            <input type="text" id="cb-categories" placeholder="VD: 2015,2016,2017,2018,2019,2020">
+          </div>
+          <div id="cb-series-container">
+            <div class="builder-series-row">
+              <input type="text" class="builder-series-name" placeholder="Tên chuỗi 1 (VD: Brazil)">
+              <input type="text" class="builder-series-values" placeholder="Giá trị, cách nhau bởi dấu phẩy — VD: 30,35,40,38,42,45">
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; margin: 6px 0 14px; flex-wrap:wrap;">
+            <button class="btn btn-ghost btn-sm" id="cb-add-series">+ Thêm chuỗi dữ liệu</button>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn btn-primary btn-sm" id="cb-generate">Tạo biểu đồ</button>
+            <button class="btn btn-ghost btn-sm" id="cb-clear">Xóa biểu đồ tự tạo</button>
+          </div>
+          <p style="font-size:0.76rem; color:var(--color-text-muted); margin-top:8px;">Line/Bar: tối đa 3 chuỗi dữ liệu, mỗi chuỗi phải có số giá trị bằng số nhãn trục X. Pie: chỉ cần 1 chuỗi, nhãn trục X là tên các phần, tối đa 6 phần.</p>
+        </div>
+
         <textarea id="essay-input" placeholder="Viết bài của bạn vào đây..."></textarea>
         <div class="word-count-bar">
           <span id="word-count" class="count low">0 từ</span>
@@ -143,6 +180,7 @@
 
 <script src="js/main.js"></script>
 <script src="js/chart-data.js"></script>
+<script src="js/chart-builder.js"></script>
 <script src="js/practice.js"></script>
 <script src="js/ai-grading.js"></script>
 </body>
