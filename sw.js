@@ -9,6 +9,7 @@ var CORE_ASSETS = [
   "./practice.html",
   "./flashcards.html",
   "./paraphrase.html",
+  "./grammar.html",
   "./css/style.css",
   "./js/main.js",
   "./js/practice.js",

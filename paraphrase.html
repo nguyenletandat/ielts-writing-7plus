@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Từ đồng nghĩa (Paraphrase) | IELTS Writing 7.0+</title>
+<meta name="description" content="Ngân hàng từ đồng nghĩa để paraphrase trong IELTS Writing: verbs, adjectives, nouns, quantifiers, connectors kèm ví dụ.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<meta name="theme-color" content="#3d5af1">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <span class="logo-badge">7+</span>
+      IELTS Writing 7.0+
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="lessons.html">Bài học</a></li>
+      <li><a href="question-bank.html">Ngân hàng đề</a></li>
+      <li><a href="practice.html">Luyện viết</a></li>
+      <li><a href="flashcards.html">Từ vựng</a></li>
+      <li><a href="paraphrase.html">Paraphrase</a></li>
+      <li><a href="grammar.html">Ngữ pháp</a></li>
+    </ul>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <button class="theme-toggle" title="Đổi giao diện sáng/tối">🌙</button>
+      <button class="nav-toggle" aria-label="Mở menu">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="container hero" style="padding-bottom:0;">
+    <h1>Từ đồng nghĩa để Paraphrase</h1>
+    <p class="lead">Tra nhanh từ đồng nghĩa cho các từ hay lặp lại trong bài Writing — dùng khi paraphrase đề bài ở mở bài, hoặc khi cần tránh lặp từ giữa các đoạn. Gõ để tìm kiếm.</p>
+  </div>
+
+  <div class="container">
+    <input type="text" id="paraphrase-search" class="paraphrase-search" placeholder="Tìm từ... (VD: important, increase, problem)">
+
+    <div class="filter-bar" id="paraphrase-filter">
+      <button class="filter-chip active" data-filter="all">Tất cả</button>
+      <button class="filter-chip" data-filter="Verbs">Verbs</button>
+      <button class="filter-chip" data-filter="Adjectives">Adjectives</button>
+      <button class="filter-chip" data-filter="Nouns">Nouns</button>
+      <button class="filter-chip" data-filter="Quantifiers">Quantifiers</button>
+      <button class="filter-chip" data-filter="Connectors">Connectors</button>
+    </div>
+
+    <p class="result-count" id="paraphrase-count"></p>
+    <div id="paraphrase-list"></div>
+    <p class="empty-state" id="paraphrase-empty" style="display:none;">Không tìm thấy từ phù hợp.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    Made for self-study &middot; IELTS Writing 7.0+
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/paraphrase-data.js"></script>
+<script>
+  var listEl = document.getElementById("paraphrase-list");
+  var countEl = document.getElementById("paraphrase-count");
+  var emptyEl = document.getElementById("paraphrase-empty");
+  var searchInput = document.getElementById("paraphrase-search");
+  var filterBar = document.getElementById("paraphrase-filter");
+  var state = { category: "all", query: "" };
+
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function render() {
+    var q = state.query.trim().toLowerCase();
+    var items = window.IELTS_PARAPHRASE_GROUPS.filter(function (g) {
+      var categoryOk = state.category === "all" || g.category === state.category;
+      if (!categoryOk) return false;
+      if (!q) return true;
+      var haystack = (g.base + " " + g.synonyms.join(" ")).toLowerCase();
+      return haystack.indexOf(q) !== -1;
+    });
+
+    listEl.innerHTML = "";
+    items.forEach(function (g) {
+      var card = document.createElement("div");
+      card.className = "paraphrase-card";
+      card.innerHTML =
+        '<div class="paraphrase-head"><span class="paraphrase-base"></span><span class="badge accent">' + escapeHtml(g.category) + "</span></div>" +
+        '<div class="paraphrase-synonyms"></div>' +
+        '<p class="paraphrase-example"></p>';
+      card.querySelector(".paraphrase-base").textContent = g.base;
+      var synWrap = card.querySelector(".paraphrase-synonyms");
+      g.synonyms.forEach(function (s) {
+        var chip = document.createElement("span");
+        chip.className = "synonym-chip";
+        chip.textContent = s;
+        synWrap.appendChild(chip);
+      });
+      card.querySelector(".paraphrase-example").textContent = "“" + g.example + "”";
+      listEl.appendChild(card);
+    });
+
+    countEl.textContent = "Hiển thị " + items.length + " / " + window.IELTS_PARAPHRASE_GROUPS.length + " nhóm từ";
+    emptyEl.style.display = items.length === 0 ? "block" : "none";
+  }
+
+  searchInput.addEventListener("input", function () {
+    state.query = searchInput.value;
+    render();
+  });
+
+  filterBar.addEventListener("click", function (e) {
+    var btn = e.target.closest(".filter-chip");
+    if (!btn) return;
+    filterBar.querySelectorAll(".filter-chip").forEach(function (b) { b.classList.remove("active"); });
+    btn.classList.add("active");
+    state.category = btn.getAttribute("data-filter");
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>
