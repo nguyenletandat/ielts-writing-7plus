@@ -35,6 +35,8 @@
   </div>
 
   <div class="container">
+    <h2 style="margin-bottom:4px;">Bài mẫu chi tiết (có phân tích)</h2>
+    <p class="section-sub">8 đề tiêu biểu, mỗi đề kèm bài viết band 7.0 - 7.5 đầy đủ và ghi chú lý do đạt band đó.</p>
     <div class="filter-bar" id="type-filter">
       <button class="filter-chip active" data-filter="all">Tất cả</button>
       <button class="filter-chip" data-filter="task1">Task 1</button>
@@ -172,6 +174,33 @@
 
     <p class="empty-state" id="empty-state" style="display:none;">Không có đề nào thuộc bộ lọc này.</p>
   </div>
+
+  <div class="container" style="padding-top:8px;">
+    <h2 style="margin-bottom:4px;">Ngân hàng đề thi thật theo năm</h2>
+    <p class="section-sub">78 đề Task 1 &amp; Task 2 được tổng hợp từ đề thi thật do thí sinh chia sẻ lại (2024–2026). Bấm "Luyện đề này" để mở thẳng sang trang luyện viết với đề đã điền sẵn.</p>
+
+    <div class="filter-group">
+      <span class="filter-label">Dạng bài</span>
+      <div class="filter-bar" id="real-task-filter" style="margin-bottom:0;">
+        <button class="filter-chip active" data-filter="all">Tất cả</button>
+        <button class="filter-chip" data-filter="task1">Task 1</button>
+        <button class="filter-chip" data-filter="task2">Task 2</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Năm</span>
+      <div class="filter-bar" id="real-year-filter" style="margin-bottom:0;">
+        <button class="filter-chip active" data-filter="all">Tất cả</button>
+        <button class="filter-chip" data-filter="2026">2026</button>
+        <button class="filter-chip" data-filter="2025">2025</button>
+        <button class="filter-chip" data-filter="2024">2024</button>
+      </div>
+    </div>
+
+    <p class="result-count" id="real-count"></p>
+    <div id="real-qlist"></div>
+    <p class="empty-state" id="real-empty-state" style="display:none;">Không có đề nào thuộc bộ lọc này.</p>
+  </div>
 </main>
 
 <footer class="site-footer">
@@ -182,6 +211,7 @@
 
 <script src="js/main.js"></script>
 <script src="js/chart-data.js"></script>
+<script src="js/question-bank-data.js"></script>
 <script>
   document.querySelectorAll(".chart-mount").forEach(function (mount) {
     var chart = window.IELTS_TASK1_CHARTS[Number(mount.getAttribute("data-chart-index"))];
@@ -214,6 +244,58 @@
     });
     emptyState.style.display = visibleCount === 0 ? "block" : "none";
   });
+
+  // ---------- Real question bank (by year) ----------
+  var realQlist = document.getElementById("real-qlist");
+  var realEmptyState = document.getElementById("real-empty-state");
+  var realCount = document.getElementById("real-count");
+  var realTaskFilter = document.getElementById("real-task-filter");
+  var realYearFilter = document.getElementById("real-year-filter");
+  var realState = { task: "all", year: "all" };
+
+  var TASK_LABEL = { task1: "Task 1", task2: "Task 2" };
+
+  function renderRealList() {
+    var items = window.IELTS_REAL_QUESTIONS.filter(function (q) {
+      var taskOk = realState.task === "all" || q.task === realState.task;
+      var yearOk = realState.year === "all" || String(q.year) === realState.year;
+      return taskOk && yearOk;
+    });
+
+    realQlist.innerHTML = "";
+    items.forEach(function (q) {
+      var dateLabel = q.month ? (q.month < 10 ? "0" + q.month : q.month) + "/" + q.year : String(q.year);
+      var practiceUrl = "practice.html?task=" + encodeURIComponent(q.task) + "&q=" + encodeURIComponent(q.text);
+      var row = document.createElement("div");
+      row.className = "qrow";
+      row.innerHTML =
+        '<div class="qrow-main">' +
+          '<div class="qrow-meta"><span class="badge">' + TASK_LABEL[q.task] + '</span><span class="badge accent">' + q.type + '</span><span class="badge band">' + dateLabel + "</span></div>" +
+          '<p class="qrow-text"></p>' +
+        "</div>" +
+        '<a class="btn btn-ghost btn-sm" href="' + practiceUrl + '">Luyện đề này →</a>';
+      row.querySelector(".qrow-text").textContent = q.text;
+      realQlist.appendChild(row);
+    });
+
+    realCount.textContent = "Hiển thị " + items.length + " / " + window.IELTS_REAL_QUESTIONS.length + " đề";
+    realEmptyState.style.display = items.length === 0 ? "block" : "none";
+  }
+
+  function wireFilterGroup(bar, key) {
+    bar.addEventListener("click", function (e) {
+      var btn = e.target.closest(".filter-chip");
+      if (!btn) return;
+      bar.querySelectorAll(".filter-chip").forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+      realState[key] = btn.getAttribute("data-filter");
+      renderRealList();
+    });
+  }
+
+  wireFilterGroup(realTaskFilter, "task");
+  wireFilterGroup(realYearFilter, "year");
+  renderRealList();
 </script>
 </body>
 </html>

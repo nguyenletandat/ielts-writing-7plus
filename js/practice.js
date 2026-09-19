@@ -298,4 +298,19 @@
   updateWordCount();
   renderHistory();
   updateChartReference();
+
+  // Pre-fill from a "Luyện đề này" link, e.g. practice.html?task=task2&q=...
+  (function applyQueryParams() {
+    var params = new URLSearchParams(location.search);
+    var task = params.get("task");
+    var question = params.get("q");
+    if (task && TASK_CONFIG[task]) {
+      taskSelect.value = task;
+      applyTaskConfig();
+    }
+    if (question) {
+      questionInput.value = question;
+      updateChartReference();
+    }
+  })();
 })();
